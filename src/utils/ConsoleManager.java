@@ -65,11 +65,17 @@ public class ConsoleManager {
 			String input = scanner.nextLine();
 			try {
 		        number = Integer.parseInt(input);
-		        break;
 		    } catch (NumberFormatException e) {
 		    	System.out.println("Your input was't a number :( Try again!");
 		    	continue;
 		    }
+			if(number < 1) {
+				System.out.println("Your input should be bigger than 0 :( Try again!");
+				continue;
+			}
+			else {
+				break;
+			}
 		}
 		
 		// user inputs a name, an explanation and examples of usage 
@@ -85,11 +91,17 @@ public class ConsoleManager {
 				String input = scanner.nextLine();
 				try {
 					numberOfExamples = Integer.parseInt(input);
-			        break;
 			    } catch (NumberFormatException e) {
 			    	System.out.println("Your input was't a number :( Try again!");
 			    	continue;
 			    }
+				if(numberOfExamples < 0) {
+					System.out.println("Your input should be positive :( Try again!");
+					continue;
+				}
+				else {
+					break;
+				}
 			}
 			List<String> examples = new ArrayList<>();
 			for(var j = 0; j < numberOfExamples; j++) {
@@ -153,11 +165,18 @@ public class ConsoleManager {
 						String input = scanner.nextLine();
 						try {
 							optionsNumber = Integer.parseInt(input);
-					        break;
+					        //break;
 					    } catch (NumberFormatException e) {
 					    	System.out.println("Your input was't a number :( Try again!");
 					    	continue;
 					    }
+						if(optionsNumber < 1) {
+							System.out.println("Your input should be bigger than 0 :( Try again!");
+							continue;
+						}
+						else {
+							break;
+						}
 					}
 					
 					// user inputs options of answer.
@@ -180,7 +199,7 @@ public class ConsoleManager {
 					    	System.out.println("Your input wasn't a number :( Try again!");
 					    	continue;
 					    }
-						if((correctAnswerIndex > 1) && (correctAnswerIndex <= optionsNumber)) {
+						if((correctAnswerIndex >= 1) && (correctAnswerIndex <= optionsNumber)) {
 							break;
 						}
 						else {
@@ -227,13 +246,20 @@ public class ConsoleManager {
 				int chosenIndex;
 				try {
 			        chosenIndex = Integer.parseInt(vocab) - 1;
+			        
 			    } catch (NumberFormatException e) {
-			    	System.out.println("There is no such option :( Try again!");
+			    	System.out.println("Your input wasn't a number :( Try again!");
 			    	continue;
 			    }
-				store.getVocabLessons().get(chosenIndex).start();
-				store.getVocabLessons().get(chosenIndex).end();
-				break;
+				if((chosenIndex > store.getVocabLessons().size() - 1) || (chosenIndex < 0)) {
+		        	System.out.println("There is no such option :( Try again!");
+			    	continue;
+		        }
+				else {
+		        	store.getVocabLessons().get(chosenIndex).start();
+		        	store.getVocabLessons().get(chosenIndex).end();
+		        	break;
+		        }
 			}
 		}
 	}
@@ -261,9 +287,15 @@ public class ConsoleManager {
 			    	System.out.println("There is no such option :( Try again!");
 			    	continue;
 			    }
-				store.getGrammarLessons().get(chosenIndex).start();
-				store.getGrammarLessons().get(chosenIndex).end();
-				break;
+				if((chosenIndex > store.getGrammarLessons().size() - 1) || (chosenIndex < 0)) {
+					System.out.println("There is no such option :( Try again!");
+			    	continue;
+				}
+				else {
+					store.getGrammarLessons().get(chosenIndex).start();
+					store.getGrammarLessons().get(chosenIndex).end();
+					break;
+				}
 			}
 		}
 	}
@@ -291,9 +323,16 @@ public class ConsoleManager {
 			    	System.out.println("There is no such option :( Try again!");
 			    	continue;
 			    }
-				store.getQuizzes().get(chosenIndex).start();
-				store.getQuizzes().get(chosenIndex).end();
-				break;
+				if((chosenIndex > store.getQuizzes().size() - 1) || (chosenIndex < 0)) {
+					System.out.println("There is no such option :( Try again!");
+			    	continue;
+				}
+				else {
+					store.getQuizzes().get(chosenIndex).start();
+					store.getQuizzes().get(chosenIndex).end();
+					break;
+				}
+				
 			}
 		}
 	}
