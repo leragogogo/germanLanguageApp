@@ -48,12 +48,15 @@ public class Main {
 			}
 			else if(userAnswer.trim().equalsIgnoreCase("4")) {
 				ConsoleManager.addVocabularyLesson(store);
+				FileManager.writeVocabLessons(store.getVocabLessons());
 			}
 			else if(userAnswer.trim().equalsIgnoreCase("5")) {
 				ConsoleManager.addGrammarLesson(store);
+				FileManager.writeGrammarLessons(store.getGrammarLessons());
 			}
 			else if(userAnswer.trim().equalsIgnoreCase("6")) {
 				ConsoleManager.addQuiz(store);
+				FileManager.writeQuizes(store.getQuizzes());
 			}
 			else if(userAnswer.trim().equalsIgnoreCase("7")) {
 				System.out.println("Tchüss!");
@@ -64,10 +67,6 @@ public class Main {
 			}
 			
 		}
-		// writing of information to files
-		FileManager.writeQuizes(store.getQuizzes());
-		FileManager.writeVocabLessons(store.getVocabLessons());
-		FileManager.writeGrammarLessons(store.getGrammarLessons());
 		ConsoleManager.scanner.close();
 		
 	}
